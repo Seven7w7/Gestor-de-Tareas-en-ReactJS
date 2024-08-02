@@ -17,7 +17,9 @@ export const TasksProvider = ({children}) => {
   const [tasks,setTasks] = useState(tsk)
   const [filteredTasks,setFilteredTasks] = useState(tsk)
 
-  
+  const updateTaskStatus = ( taskId, newStatus) => {
+    setTasks(prevTasks => prevTasks.map(task => task.id === taskId ? {...task, status: newStatus} : task) );
+  }
 
 
 
