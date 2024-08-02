@@ -1,13 +1,33 @@
+import { createContext , useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-const tsk = [
-  { id: uuidv4(), title: 'Tarea de ejemplo 1', description: 'Descripción pendiente1',status: false },          
-  { id: uuidv4(), title: 'Tarea de ejemplo 2', description: 'Descripción pendiente2',status: true },          
-  { id: uuidv4(), title: 'Tarea de ejemplo 3', description: 'Descripción pendiente3',status: true }          
-]
+export const taskContext = createContext()
 
-export const TasksProvider = () => {
-  return (<></>)  
+
+const tsk = [
+  { id: uuidv4(), title: 'Tarea de ejemplo 1', description: 'Descripción pendiente', status: false },
+  { id: uuidv4(), title: 'Tarea de ejemplo 2', description: 'Descripción pendiente' , status: true},
+  { id: uuidv4(), title: 'Tarea de ejemplo 3', description: 'Descripción pendiente' , status: true},
+  { id: uuidv4(), title: 'Tarea de ejemplo 4', description: 'Descripción pendiente' , status: true},
+
+];
+
+export const TasksProvider = ({children}) => {
+
+  const [tasks,setTasks] = useState(tsk)
+  const [filteredTasks,setFilteredTasks] = useState(tsk)
+
+  
+
+
+
+  return (
+<taskContext.Provider value={{tasks , setTasks,filteredTasks,setFilteredTasks}}>
+
+
+</taskContext.Provider>
+
+  )  
 }
 
 
