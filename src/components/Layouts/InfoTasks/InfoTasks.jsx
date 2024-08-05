@@ -1,23 +1,24 @@
 import React, { useContext, useEffect } from 'react';
 import './infoTasks.css';
-
-import { tasksContext } from "../../Context/Context";
+import { taskContext } from '../../Context/Context';
 
 export const InfoTasks = () => {
-  const context = useContext(tasksContext);
+  const context = useContext(taskContext);
 
   useEffect(() => {
-    let pending = context.tasks.filter(tasks => tasks.status === false);
-    let resolve = context.tasks.filter(tasks => tasks.status === true);
+    const pending = context.tasks.filter(task => !task.status);
+    const done = context.tasks.filter(task => task.status);
 
     context.setPendingTasks(pending.length);
-    context.setDoneTasks(resolve.length);
+    context.setDoneTasks(done.length);
   }, [context.tasks]);
 
-  return(
-    <>   
-    <h2 className='info-tasks'>usted tiene<span className='task-pending'>{context.pendingTasks}</span> pendientes y <span className='task-done'>{context.doneTasks}</span>terminadas</h2> 
-    <hr />
+  return (
+    <>
+      <h2 className='info-tasks'>
+        Usted tiene <span className='task-pending'>{context.pendingTasks}</span> pendientes y <span className='task-done'>{context.doneTasks}</span> terminadas
+      </h2>
+      <hr />
     </>
-  )
-} 
+  );
+};

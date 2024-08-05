@@ -1,3 +1,3 @@
-import './Header.css'
+import './Header.css';
 
-export const Header = ({children}) => <header className ='header-app'>{children}</header> 
+export const Header = ({ children }) => <header className='header-app'>{children}</header>;

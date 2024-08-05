@@ -1,18 +1,16 @@
-import React, { useContext } from 'react'
-import { Header } from '../../Layouts/Header/Header'
-import profile from '../../../images/profile.jpg'
-import { Main } from '../../Layouts/Main/Main'
-import { InfoTasks } from '../../Layouts/InfoTasks/InfoTasks'
-import { NewTask } from '../../NewTask/NewTask'
-import { FilterTasks } from '../../FilterTasks/FilterTasks'
-import { ContainerTasks } from '../../Layouts/ContainerTasks/ContainerTasks'
-import { ItemTask } from '../../ItemTask/ItemTask'
-import { tasksContext } from '../../Context/Context'
+import React, { useContext } from 'react';
+import { Header } from '../../Layouts/Header/Header';
+import profile from '/src/images/profile.jpg'; // Asegúrate de que la imagen está en esta ruta
+import { Main } from '../../Layouts/Main/Main';
+import { InfoTasks } from '../../Layouts/InfoTasks/InfoTasks';
+import { NewTask } from '../../NewTask/NewTask';
+import { FilterTasks } from '../../FilterTasks/FilterTasks';
+import { ContainerTasks } from '../../Layouts/ContainerTasks/ContainerTasks';
+import { ItemTask } from '../../ItemTask/ItemTask';
+import { taskContext } from '../../Context/Context';
 
 export const Home = () => {
-
-  const context = useContext(tasksContext)
-
+  const context = useContext(taskContext);
 
   return (
     <>
@@ -25,24 +23,22 @@ export const Home = () => {
             <img className='img-profile' src={profile} alt="Imagen de perfil" />
           </div>
         </div>
-      <NewTask />
-      <InfoTasks />
-      <FilterTasks />
+        <NewTask />
+        <InfoTasks />
+        <FilterTasks />
       </Header>
       <Main>
         <ContainerTasks>
-          {
-            context.filteredTasks.map( (task,idx) => (
-              <ItemTask 
-                key={task+idx}
-                titleTask={task.title}
-                content={task.description}
-                idTask={task.id}
-              />
-            ))
-          }
+          {context.filteredTasks.map((task) => (
+            <ItemTask
+              key={task.id} 
+              titleTask={task.title}
+              content={task.description}
+              idTask={task.id}
+            />
+          ))}
         </ContainerTasks>
       </Main>
     </>
-  )
-}
+  );
+};
